@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catia Browser</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("file:///C:/Users/swapn/Downloads/WhatsApp Image 2025-01-30 at 23.00.00_c501e58e.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100vw;
+            transition: background-image 0.5s ease;
+        }
+
+        /* Dynamic Themes */
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.light {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        body.cyberpunk {
+            background-color: #0a0a0a;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body.blade_runner {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        body.neon {
+            background-color: #000000;
+            color: #39ff14;
+        }
+        body.edgerunners {
+            background-color: #101010;
+            color: #ffcc00;
+        }
+        body.gothic {
+            background-color: #0f0f0f;
+            color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Catia Browser</h1>
+    <p>Your personalized browsing experience.</p>
+
+    <script>
+        // ✅ Force homepage load without any security errors
+        window.onload = function() {
+            if (window.location.protocol === 'file:') {
+                window.stop();
+                document.body.innerHTML = `
+                    <h1>Welcome to Catia Browser</h1>
+                    <p>Your personalized browsing experience.</p>
+                `;
+            }
+        };
+
+        // ✅ Preserve the theme via injected JS
+        document.body.className = 'dark'; // Always default to dark to prevent errors
+    </script>
+</body>
+</html>
