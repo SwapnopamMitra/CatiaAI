@@ -1,0 +1,23 @@
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+import torch
+
+# Load Base Model
+model_name = "mistralai/Mistral-7B-v0.1"
+model = AutoModelForCausalLM.from_pretrained(
+    model_name, 
+    torch_dtype=torch.float16, 
+    device_map="auto"
+)
+
+# Load LoRA Adapter
+lora_model = PeftModel.from_pretrained(model, "./mistral_lora")
+merged_model = lora_model.merge_and_unload()
+
+# Save the Merged Model
+save_path = "./mistral_trained"
+merged_model.save_pretrained(save_path)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer.save_pretrained(save_path)
+
+print(f"🎉 Model merged and saved to {save_path}")
